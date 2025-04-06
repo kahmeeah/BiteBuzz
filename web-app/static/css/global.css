@@ -1,0 +1,122 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    /* overflow: hidden;
+    overscroll-behavior: none; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+
+  }
+  
+
+.main{
+    width: 40%;
+    min-width: 425px;
+    background-color: #252525;
+    margin: 50px;
+    border-radius: 40px;
+    border-top-left-radius: 0px;
+    min-height: 50%;
+    padding: 20px;
+    margin-top: 0;
+    display: grid;
+    grid-template-areas: "top" "mid" "bottom";
+    grid-template-rows: 50px 1fr 50px;
+    flex-direction: column;
+    place-items: center;
+}
+
+.tabs{
+    margin: 0;
+    display: flex;
+    min-width: 425px;
+    width: 40%;
+    padding: 20px;
+    padding-bottom: 0;
+    margin-right: 50px;
+    margin-left: 50px;
+    flex-direction: row;
+    /* align-items: flex-start; */
+}
+
+@media  screen and (max-width:485px) {
+    .main{
+        width: 310px;
+        min-height: 40%;
+        min-width: 20%;
+    }
+    .tabs{
+        width: 310px;
+        min-width: 20%;
+    }
+    
+}
+
+.text-box{
+    border-radius: 30px;
+    background-color: #3C3C3C;
+    width: 90%;
+    height: 100%;
+    /* display: flex; */
+    padding: 10px;
+    padding-left: 30px;
+    grid-area: mid;
+}
+
+.text-box p{
+    color: whitesmoke;
+}
+
+.cog-class{
+    grid-area: top;
+    justify-self: right;
+    margin-bottom: 20px;
+    margin-right: 8px;
+}
+
+#cog-svg{
+    width: 40px;
+    fill: whitesmoke;
+}
+
+.button-class{
+    grid-area: bottom;
+    margin-top: 20px;
+}
+
+.main #button{
+    width: 50px;
+}
+
+#button{
+    border-radius: 10px;
+}
+
+
+.tab-button{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100px;
+    height: 30px;
+    background-color: #252525;
+    justify-self: left;
+    position: relative;
+    left: -20px;
+    color: whitesmoke;
+}
+
+#inactive{
+    background-color: #3C3C3C;
+}
+
