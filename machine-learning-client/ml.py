@@ -1,6 +1,7 @@
 from datetime import datetime
 from pymongo import MongoClient
 import time
+from difflib import SequenceMatcher
 
 def typing(sentence, start_time, end_time):
     
@@ -26,5 +27,15 @@ def typing(sentence, start_time, end_time):
     "date": date,
     }
 
+
+
+def calculate_accuracy(str1: str, str2: str) -> float:
+    """
+    Calculate the accuracy score between two strings using similarity ratio.
+    :param str1: The reference string.
+    :param str2: The string to compare.
+    :return: Accuracy score as a float between 0 and 1.
+    """
+    return SequenceMatcher(None, str1, str2).ratio()
 
 
