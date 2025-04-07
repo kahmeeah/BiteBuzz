@@ -17,3 +17,4 @@ def detect_category_map(text):
 
     return categories_found
 
+
