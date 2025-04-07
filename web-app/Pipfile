@@ -10,6 +10,7 @@ flask = "*"
 pymongo = "*"
 pytest-flask = "*"
 pytest = "*"
+typing-extensions = "*"
 
 [dev-packages]
 tomli = "*"
