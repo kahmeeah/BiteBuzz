@@ -1,8 +1,20 @@
+"""Module for generating improvement suggestions based on user review keywords."""
+
 from category_map import CATEGORY_KEYWORDS
 
+
 def generate_suggestion(review, sentiment):
+    """
+    Generates a suggestion based on the presence of specific keywords in the review text.
+
+    Args:
+        text (str): The user-submitted review.
+
+    Returns:
+        str: A relevant suggestion or general message if no keywords matched.
+    """
     review = review.lower()
-    
+
     if sentiment == "Positive":
         return "Awesome! Keep doing what you're doing."
 
@@ -49,6 +61,5 @@ def generate_suggestion(review, sentiment):
             break
 
     if suggestions:
-        return " ".join(suggestions) 
-    else:
-        return "Review customer feedback for more insights."
+        return " ".join(suggestions)
+    return "Review customer feedback for more insights."
