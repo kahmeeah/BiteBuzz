@@ -2,6 +2,7 @@
 
 from textblob import TextBlob
 
+
 def analyze_sentiment(review):
     """
     Analyze the sentiment of a given review string using TextBlob.
@@ -23,5 +24,5 @@ def analyze_sentiment(review):
     return {
         "sentiment": sentiment,
         "polarity": round(polarity, 2),
-        "subjectivity": round(subjectivity, 2)
+        "subjectivity": round(subjectivity, 2),
     }
