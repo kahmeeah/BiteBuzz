@@ -12,6 +12,7 @@ textblob = "*"
 [dev-packages]
 pytest = "*"
 coverage = "*"
+dill = "*"
 
 [requires]
 python_version = "3.10"
