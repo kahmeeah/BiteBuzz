@@ -25,11 +25,51 @@
             placeholder="Paste your review here"></textarea>
 
         <div class="button-class">
-            <button id="button">click</button>
+            <button id="submit-button">click</button>
         </div>
+
+       
+    </div>
+
+    <div class="popup-bg">
+        <div class="popup-box">
+            <img id="popup" draggable="false" src="../static/images/bigrips.svg" alt="">
+            <div style="z-index: 99999;">hallllooooooooo</div>
+            <button id="close-button">close</button>
+        </div>
+        
+        <!-- <svg id="popup">
+            <use href="../static/images/icons.svg#bigrips"/>
+        </svg> -->
     </div>
 
     <div>whaddup</div>
 
 </body>
+<script>
+    const submitButton = document.getElementById("submit-button")
+    const popupBg = document.querySelector(".popup-bg")
+    const popup = document.getElementById("popup")
+    const popupDiv = document.querySelector(".popup-box")
+    const closeButton = document.getElementById("close-button")
+
+    console.log(submitButton)
+    submitButton.addEventListener("click", () => {
+        popupBg.style.visibility = 'visible'
+    })
+
+    popupBg.addEventListener("click", (e) => {
+        const isClickInside = popupDiv.contains(e.target)
+
+        if (!isClickInside){
+            popupBg.style.visibility = 'hidden'
+        }
+    })
+
+    closeButton.addEventListener("click", () => {
+        popupBg.style.visibility = 'hidden'
+    })
+
+
+</script>
 </html>
