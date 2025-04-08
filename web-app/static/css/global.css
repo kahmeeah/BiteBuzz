@@ -142,7 +142,7 @@ button {
 }
 
 @media  screen and (max-width:485px) {
-    .main{
+    .main, .red-main{
         width: 310px;
         min-height: 40%;
         min-width: 20%;
