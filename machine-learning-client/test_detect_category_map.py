@@ -20,7 +20,6 @@ def test_multiple_categories():
     expected = {"Food", "Service", "Environment", "Time"}
     assert set(result) == expected
 
-
 def test_general():
     review = "No comments."
     assert detect_category_map(review) == ["General"]

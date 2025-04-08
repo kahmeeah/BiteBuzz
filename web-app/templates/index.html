@@ -1,11 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/css/global.css">
+        <title>Document</title>
 </head>
 <body>
-    <div>Hello, World!!</div>
+    <h1 class="title">BITE<span id="i-color">BUZZ</span></h1>
+
+    <div class="tabs">
+        <button class="tab-button" id="yellow-tab">tab 1</button>
+        <button class="tab-button" id="red-tab">tab 2</button>
+    </div>
+
+    <div class="main">
+        <!-- <div class="cog-class">
+            <svg id="cog-svg">
+                <use href="../static/images/icons.svg#cog"/>
+            </svg>
+        </div> -->
+
+        <textarea class="text-box" name="text-box"
+            placeholder="Paste your review here"></textarea>
+
+        <div class="button-class">
+            <button id="submit-button">click</button>
+        </div>
+
+       
+    </div>
+
+    <div class="red-main">
+        <!-- <div class="cog-class">
+            <svg id="cog-svg">
+                <use href="../static/images/icons.svg#cog"/>
+            </svg>
+        </div> -->
+
+        <textarea class="text-box" name="text-box"
+            placeholder="Paste your review here"></textarea>
+
+       
+    </div>
+
+
+
+    <div class="popup-bg">
+        <div class="popup-box">
+            <img id="popup" draggable="false" src="../static/images/bigrips.svg" alt="">
+            <div style="z-index: 99999;">hallllooooooooo</div>
+            <button id="close-button">close</button>
+        </div>
+        
+        <!-- <svg id="popup">
+            <use href="../static/images/icons.svg#bigrips"/>
+        </svg> -->
+    </div>
+
+    <div>whaddup</div>
+
 </body>
+<script>
+    const submitButton = document.getElementById("submit-button")
+    const popupBg = document.querySelector(".popup-bg")
+    const popup = document.getElementById("popup")
+    const popupDiv = document.querySelector(".popup-box")
+    const closeButton = document.getElementById("close-button")
+
+    const yellowTab = document.getElementById("yellow-tab")
+    const redTab = document.getElementById("red-tab")
+
+    const yellowMain = document.querySelector(".main")
+    const redMain = document.querySelector(".red-main")
+
+    console.log(submitButton)
+    submitButton.addEventListener("click", () => {
+        popupBg.style.visibility = 'visible'
+    })
+
+    popupBg.addEventListener("click", (e) => {
+        const isClickInside = popupDiv.contains(e.target)
+
+        if (!isClickInside){
+            popupBg.style.visibility = 'hidden'
+        }
+    })
+
+    closeButton.addEventListener("click", () => {
+        popupBg.style.visibility = 'hidden'
+    })
+
+    redTab.addEventListener("click", () =>{
+        console.log("jjeidjeidoeidnoiek")
+        yellowMain.style.display = 'none'
+        redMain.style.display = 'grid'
+
+    })
+
+    yellowTab.addEventListener("click", () =>{
+        console.log("beiudbeubduebd")
+        redMain.style.display = 'none'
+        yellowMain.style.display = 'grid'
+
+    })
+</script>
 </html>
