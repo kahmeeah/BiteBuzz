@@ -1,7 +1,6 @@
-import pytest
-from analyze_sentiment import analyze_sentiment
+"""Unit tests for the analyze_sentiment function in the ML client."""
 
-"""Unit tests for the analyze_sentiment function."""
+from analyze_sentiment import analyze_sentiment
 
 
 def test_positive_sentiment():
