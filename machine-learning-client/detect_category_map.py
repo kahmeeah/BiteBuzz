@@ -1,5 +1,6 @@
 from category_map import CATEGORY_KEYWORDS
 
+
 def detect_category_map(text):
     text = text.lower()
     categories_found = []
@@ -16,5 +17,3 @@ def detect_category_map(text):
         categories_found.append("General")
 
     return categories_found
-
-
