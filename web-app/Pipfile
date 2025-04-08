@@ -7,10 +7,12 @@ name = "pypi"
 pylint = "*"
 black = "*"
 flask = "*"
-pymongo = "*"
 pytest-flask = "*"
 pytest = "*"
 typing-extensions = "*"
+pymongo = "*"
+dotenv = "*"
+dnspython = "*"
 
 [dev-packages]
 tomli = "*"
