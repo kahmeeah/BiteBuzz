@@ -63,6 +63,24 @@ button {
     place-items: center;
 }
 
+.red-main{
+    width: 40%;
+    min-width: 425px;
+    background-color: #D45652;
+    margin: 50px;
+    border-radius: 40px;
+    border-top-left-radius: 0px;
+    min-height: 50%;
+    padding: 20px;
+    margin-top: 0;
+    display: grid;
+    grid-template-areas: "top" "mid" "bottom";
+    grid-template-rows: 50px 1fr 50px;
+    flex-direction: column;
+    place-items: center;
+    display: none;
+}
+
 .tabs{
     margin: 0;
     display: flex;
@@ -201,7 +219,7 @@ button {
     color: whitesmoke;
 }
 
-#inactive{
+#red-tab{
     background-color: #D45652;
 }
 
