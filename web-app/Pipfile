@@ -13,6 +13,7 @@ typing-extensions = "*"
 pymongo = "*"
 dotenv = "*"
 dnspython = "*"
+exceptiongroup = "*"
 
 [dev-packages]
 tomli = "*"
