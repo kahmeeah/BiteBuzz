@@ -8,11 +8,7 @@ pylint = "*"
 black = "*"
 pymongo = "*"
 textblob = "*"
-<<<<<<< HEAD
 tomli = "*"
-=======
-python-dotenv = "*"
->>>>>>> 578297d08eb1fccda21fc010cca3fc812ba84012
 
 [dev-packages]
 pytest = "*"
