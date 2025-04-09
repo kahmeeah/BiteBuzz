@@ -2,64 +2,40 @@
 
 from category_map import CATEGORY_KEYWORDS
 
-
-def generate_suggestion(review, sentiment):
+def generate_suggestion(review, sentiment, key_word):
     """
     Generates a suggestion based on the presence of specific keywords in the review text.
 
     Args:
-        text (str): The user-submitted review.
+        review (str): The user-submitted review.
+        sentiment (str): The sentiment label (e.g., 'Positive', 'Negative', 'Neutral').
+        key_word (str): The category of keywords to check in the review.
 
     Returns:
-        str: A relevant suggestion or general message if no keywords matched.
+        str: A relevant suggestion or a general message if no keywords matched.
     """
     review = review.lower()
 
     if sentiment == "Positive":
         return "Awesome! Keep doing what you're doing."
 
-    suggestions = []
+    suggestion = "Review customer feedback for more insights."
 
-    for word in CATEGORY_KEYWORDS["Food"]:
-        if word in review:
-            suggestions.append("Try improving food quality or consistency.")
-            break
+    for word in CATEGORY_KEYWORDS.get(key_word, []):
+        if word.lower() in review:
+            match key_word:
+                case "Food":
+                    suggestion = "Try improving food quality or consistency."
+                case "Service":
+                    suggestion = "Train staff to enhance customer service."
+                case "Price":
+                    suggestion = "Consider adjusting pricing to match value."
+                case "Ambience":
+                    suggestion = "Improve lighting, music, or seating arrangements."
+                case "Wait":
+                    suggestion = "Reduce wait times by optimizing service flow."
+                case _:
+                    suggestion = "Check customer feedback for this area."
+            break  
 
-    for word in CATEGORY_KEYWORDS["Service"]:
-        if word in review:
-            suggestions.append("Focus on better customer service.")
-            break
-
-    for word in CATEGORY_KEYWORDS["Cleanliness"]:
-        if word in review:
-            suggestions.append("Consider improving cleanliness and hygiene.")
-            break
-
-    for word in CATEGORY_KEYWORDS["Time"]:
-        if word in review:
-            suggestions.append("Work on faster service or reducing wait times.")
-            break
-
-    for word in CATEGORY_KEYWORDS["Price"]:
-        if word in review:
-            suggestions.append("Reassess pricing for better value.")
-            break
-
-    for word in CATEGORY_KEYWORDS["Environment"]:
-        if word in review:
-            suggestions.append("Enhance the restaurant’s vibe or atmosphere.")
-            break
-
-    for word in CATEGORY_KEYWORDS["Drinks"]:
-        if word in review:
-            suggestions.append("Improve drink options or quality.")
-            break
-
-    for word in CATEGORY_KEYWORDS["Location"]:
-        if word in review:
-            suggestions.append("Improve location accessibility or parking.")
-            break
-
-    if suggestions:
-        return " ".join(suggestions)
-    return "Review customer feedback for more insights."
+    return suggestion
