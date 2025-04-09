@@ -19,7 +19,7 @@ def detect_category_map(text):
                     categories_found.append(category)
                 break  # only need one match per category
 
-    if not categories_found:
+    if len(categories_found) == 0:
         categories_found.append("General")
 
     return categories_found
