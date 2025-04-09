@@ -9,6 +9,7 @@ black = "*"
 pymongo = "*"
 textblob = "*"
 tomli = "*"
+typing-extensions = "*"
 
 [dev-packages]
 pytest = "*"
