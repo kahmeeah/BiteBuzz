@@ -74,6 +74,8 @@
     const yellowMain = document.querySelector(".main")
     const redMain = document.querySelector(".red-main")
 
+    const textBox = document.querySelector(".text-box")
+
     // edited this
     submitButton.addEventListener("click", async () => {
         const reviewText = textBox.value
@@ -131,14 +133,12 @@
     })
 
     redTab.addEventListener("click", () =>{
-        console.log("jjeidjeidoeidnoiek")
         yellowMain.style.display = 'none'
         redMain.style.display = 'grid'
 
     })
 
     yellowTab.addEventListener("click", () =>{
-        console.log("beiudbeubduebd")
         redMain.style.display = 'none'
         yellowMain.style.display = 'grid'
 
