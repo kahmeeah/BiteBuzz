@@ -1,6 +1,6 @@
 """Unit tests for the detect_category_map function in the ML client."""
 
-from detect_category_map import detect_category_map
+from helpers.detect_category_map import detect_category_map
 
 
 def test_one_word():

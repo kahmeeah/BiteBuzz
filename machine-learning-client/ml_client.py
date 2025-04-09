@@ -6,8 +6,10 @@ from datetime import datetime
 from dotenv import load_dotenv
 import pymongo
 
-from analyze_sentiment import analyze_sentiment
-from generate_suggestion import generate_suggestion
+from helpers.analyze_sentiment import analyze_sentiment
+from helpers.generate_suggestion import generate_suggestion
+from helpers.detect_category_map import detect_category_map
+
 
 # docker???
 load_dotenv(override=True)
@@ -31,6 +33,9 @@ def process_unprocessed_reviews():
 
         sentiment_result = analyze_sentiment(review_text)
         suggestion = generate_suggestion(review_text, sentiment_result["sentiment"])
+        categories = detect_category_map(review_text)
+        category = categories[0]
+
         date = datetime.now().strftime("%B %d %I:%M%p")
 
         # Update the  document
@@ -42,6 +47,7 @@ def process_unprocessed_reviews():
                     "polarity": sentiment_result["polarity"],
                     "subjectivity": sentiment_result["subjectivity"],
                     "suggestion": suggestion,
+                    "category": category,
                     "date": date,
                     "processed": True,
                 }

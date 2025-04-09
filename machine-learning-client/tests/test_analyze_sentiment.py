@@ -1,6 +1,6 @@
 """Unit tests for the analyze_sentiment function in the ML client."""
 
-from analyze_sentiment import analyze_sentiment
+from helpers.analyze_sentiment import analyze_sentiment
 
 
 def test_positive_sentiment():

@@ -1,6 +1,6 @@
 """Unit tests for the generate_suggestion function in the ML client."""
 
-from generate_suggestion import generate_suggestion
+from helpers.generate_suggestion import generate_suggestion
 
 
 def test_generate_suggestion_food():
