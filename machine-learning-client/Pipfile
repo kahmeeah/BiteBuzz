@@ -8,7 +8,8 @@ pylint = "*"
 black = "*"
 pymongo = "*"
 textblob = "*"
-python-dotenv = "*"
+tomli = "*"
+typing-extensions = "*"
 
 [dev-packages]
 pytest = "*"
