@@ -2,6 +2,7 @@
 
 from category_map import CATEGORY_KEYWORDS
 
+
 def generate_suggestion(review, sentiment, key_word):
     """
     Generates a suggestion based on the presence of specific keywords in the review text.
@@ -36,6 +37,6 @@ def generate_suggestion(review, sentiment, key_word):
                     suggestion = "Reduce wait times by optimizing service flow."
                 case _:
                     suggestion = "Check customer feedback for this area."
-            break  
+            break
 
     return suggestion
