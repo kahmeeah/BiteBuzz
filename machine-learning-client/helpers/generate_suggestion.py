@@ -20,23 +20,21 @@ def generate_suggestion(review, sentiment, key_word):
     if sentiment == "Positive":
         return "Awesome! Keep doing what you're doing."
 
-    suggestion = "Review customer feedback for more insights."
-
     for word in CATEGORY_KEYWORDS.get(key_word, []):
         if word.lower() in review:
             match key_word:
                 case "Food":
-                    suggestion = "Try improving food quality or consistency."
+                    return "Try improving food quality or consistency."
                 case "Service":
-                    suggestion = "Train staff to enhance customer service."
+                    return "Train staff to enhance customer service."
                 case "Price":
-                    suggestion = "Consider adjusting pricing to match value."
+                    return "Consider adjusting pricing to match value."
                 case "Ambience":
-                    suggestion = "Improve lighting, music, or seating arrangements."
+                    return "Improve lighting, music, or seating arrangements."
                 case "Wait":
-                    suggestion = "Reduce wait times by optimizing service flow."
+                    return "Reduce wait times by optimizing service flow."
                 case _:
-                    suggestion = "Check customer feedback for this area."
-            break
+                    return "Check customer feedback for this area."
 
-    return suggestion
+    # Default fallback
+    return "Review customer feedback for more insights."
