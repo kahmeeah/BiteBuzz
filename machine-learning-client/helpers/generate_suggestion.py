@@ -36,7 +36,7 @@ def generate_suggestion(review, sentiment, key_word):
                 case "Time":
                     suggestion = "Reduce wait times by optimizing service flow."
                 case "Drinks":
-                    suggestion = "Enhance drink variety or presentation."
+                    suggestion = "Enhance drink variety, presentation, or quality."
                 case "Location":
                     suggestion = "Improve accessibility or parking options."
                 case "Cleanliness":
