@@ -12,12 +12,14 @@ client = pymongo.MongoClient("mongodb://mongo:27017/")
 db = client["bitebuzz"]
 collection = db["reviews"]
 
+
 @app.route("/")
 def index():
     """
     sends data to the db
     """
     return render_template("index.html")
+
 
 @app.route("/submit", methods=["POST"])
 def submit_review():
@@ -32,6 +34,7 @@ def submit_review():
     result = collection.insert_one(doc)
     return jsonify({"id": str(result.inserted_id)})
 
+
 @app.route("/result/<review_id>")
 def get_result(review_id):
     """
@@ -44,16 +47,19 @@ def get_result(review_id):
         if not review.get("processed"):
             return jsonify({"status": "processing"}), 202
 
-        return jsonify({
-            "text": review["text"],
-            "sentiment": review["sentiment"],
-            "suggestion": review["suggestion"],
-            "category": review["category"],
-            "polarity": review["polarity"],
-            "subjectivity": review["subjectivity"],
-        })
+        return jsonify(
+            {
+                "text": review["text"],
+                "sentiment": review["sentiment"],
+                "suggestion": review["suggestion"],
+                "category": review["category"],
+                "polarity": review["polarity"],
+                "subjectivity": review["subjectivity"],
+            }
+        )
     except InvalidId:
         return jsonify({"error": "Invalid review ID"}), 400
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
