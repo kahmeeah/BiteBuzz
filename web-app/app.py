@@ -51,14 +51,16 @@ def get_result(review_id):
     if not review.get("processed"):
         return jsonify({"status": "processing"}), 202
 
-    return jsonify({
-        "text": review["text"],
-        "sentiment": review["sentiment"],
-        "suggestion": review["suggestion"],
-        "category": review["category"],
-        "polarity": review["polarity"],
-        "subjectivity": review["subjectivity"],
-    })
+    return jsonify(
+        {
+            "text": review["text"],
+            "sentiment": review["sentiment"],
+            "suggestion": review["suggestion"],
+            "category": review["category"],
+            "polarity": review["polarity"],
+            "subjectivity": review["subjectivity"],
+        }
+    )
 
 
 @app.route("/logs")
