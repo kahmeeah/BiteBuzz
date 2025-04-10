@@ -10,6 +10,7 @@ pymongo = "*"
 textblob = "*"
 tomli = "*"
 typing-extensions = "*"
+python-dotenv = "*"
 
 [dev-packages]
 pytest = "*"
