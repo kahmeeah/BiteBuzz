@@ -3,8 +3,7 @@
 CATEGORY_KEYWORDS = {
     "Food": [
         "taste",
-        "food"
-        "bland",
+        "food" "bland",
         "delicious",
         "cold",
         "undercooked",
