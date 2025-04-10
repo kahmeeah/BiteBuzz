@@ -22,14 +22,19 @@
             </svg>
         </div> -->
 
-        <textarea class="text-box" name="text-box"
+        <!-- <textarea class="text-box" name="text-box"
             placeholder="Paste your review here"></textarea>
 
         <div class="button-class">
             <button id="submit-button">click</button>
-        </div>
+        </div> -->
+        <!-- i commented the above out to replace w the mic stuff -->
 
-       
+        <button id="record-btn">start recording</button>
+        <button id="submit-btn" disabled>submit review</button>
+        <button id="new-review" style="display:none;">record another review</button>
+        <div id="preview"></div>
+
     </div>
 
     <div class="red-main">
@@ -77,7 +82,6 @@
 
 </body>
 <script>
-    const submitButton = document.getElementById("submit-button")
     const popupBg = document.querySelector(".popup-bg")
     const popup = document.getElementById("popup")
     const popupDiv = document.querySelector(".popup-box")
@@ -91,55 +95,77 @@
     const redMain = document.querySelector(".red-main")
     const blueMain = document.querySelector(".blue-main")
 
-    const textBox = document.querySelector(".text-box")
+    const recordBtn = document.getElementById('record-btn')
+    const submitBtn = document.getElementById('submit-btn')
+    const newReviewBtn = document.getElementById('new-review')
+    const preview = document.getElementById('preview')
 
-    // edited this
-    submitButton.addEventListener("click", async () => {
-        const reviewText = textBox.value
-        if (!reviewText) {
-            alert("Please enter a review first!")
-            return
+    let isRecording = false
+    let recognition
+    let transcriptText = ''
+
+    if ('webkitSpeechRecognition' in window) {
+        recognition = new webkitSpeechRecognition()
+        recognition.continuous = false
+        recognition.lang = 'en-US'
+        recognition.interimResults = false
+
+        recognition.onresult = (event) => {
+            transcriptText = event.results[0][0].transcript
+            preview.textContent = transcriptText
+            submitBtn.disabled = false
         }
 
-        // Submit the review
-        const response = await fetch("/submit", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ text: reviewText })
-        })
-        const data = await response.json()
-        const reviewId = data.id
+        recognition.onerror = (event) => {
+            console.error("Speech recognition error:", event.error)
+            preview.textContent = "Error: " + event.error
+        }
 
-        // Poll for result every 2 seconds
-        const poll = setInterval(async () => {
-            const res = await fetch(`/result/${reviewId}`)
-            if (res.status === 200) {
-                const resultData = await res.json()
-                popupDiv.innerHTML = `
-                    <p><strong>Sentiment:</strong> ${resultData.sentiment}</p>
-                    <p><strong>Suggestion:</strong> ${resultData.suggestion}</p>
-                    <p><strong>Category:</strong> ${resultData.category}</p>
-                    <p><strong>Polarity:</strong> ${resultData.polarity}</p>
-                    <p><strong>Subjectivity:</strong> ${resultData.subjectivity}</p>
-                    <button id="close-button">close</button>
-                `
-                popupBg.style.visibility = 'visible'
-                clearInterval(poll)
-
-                document.getElementById("close-button").addEventListener("click", () => {
-                    popupBg.style.visibility = 'hidden'
-                })
-
-            } else if (res.status !== 202) {
-                console.error("Unexpected response")
-                clearInterval(poll)
+        recordBtn.addEventListener('click', () => {
+            if (!isRecording) {
+                recognition.start()
+                recordBtn.textContent = "stop recording"
+            } else {
+                recognition.stop()
+                recordBtn.textContent = "start recording"
             }
-        }, 2000)
+            isRecording = !isRecording
+        })
+    } else {
+        recordBtn.disabled = true
+        preview.textContent = "Speech recognition not supported in this browser."
+    }
+
+    submitBtn.addEventListener('click', async () => {
+        if (!transcriptText) return
+
+        const response = await fetch('/submit', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: transcriptText })
+        })
+
+        const data = await response.json()
+        console.log("Submitted review with ID:", data.id)
+
+        preview.textContent = "review submitted!"
+        submitBtn.disabled = true
+        recordBtn.disabled = true
+        newReviewBtn.style.display = 'inline-block'
     })
 
+    newReviewBtn.addEventListener('click', () => {
+        transcriptText = ''
+        preview.textContent = ''
+        recordBtn.disabled = false
+        submitBtn.disabled = true
+        newReviewBtn.style.display = 'none'
+        recordBtn.textContent = "start recording"
+    })
+
+    // don't touch
     popupBg.addEventListener("click", (e) => {
         const isClickInside = popupDiv.contains(e.target)
-
         if (!isClickInside){
             popupBg.style.visibility = 'hidden'
         }
@@ -153,21 +179,18 @@
         yellowMain.style.display = 'none'
         blueMain.style.display = 'none'
         redMain.style.display = 'grid'
-
     })
 
     yellowTab.addEventListener("click", () =>{
         redMain.style.display = 'none'
         blueMain.style.display = 'none'
         yellowMain.style.display = 'grid'
-
     })
 
     blueTab.addEventListener("click", () =>{
         redMain.style.display = 'none'
         yellowMain.style.display = 'none'
         blueMain.style.display = 'grid'
-
     })
 </script>
 </html>
