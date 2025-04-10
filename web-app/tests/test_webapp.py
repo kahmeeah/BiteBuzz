@@ -28,7 +28,7 @@ class FlaskAppTest(unittest.TestCase):
             self.assertEqual(response.json["id"], "12345")
 
     @patch("app.collection")
-    def test_submit_review_no_text(self):
+    def test_submit_review_no_text(self, mock_collection):
         """
         Test when no text is provided
         """
@@ -91,7 +91,7 @@ class FlaskAppTest(unittest.TestCase):
             self.assertEqual(response.json["status"], "processing")
 
     @patch("app.collection")
-    def test_get_result_invalid_id(self):
+    def test_get_result_invalid_id(self, mock_collection):
         """
         Test the /result route with an invalid review ID.
         """
