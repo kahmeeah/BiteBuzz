@@ -83,5 +83,5 @@ This starts all three services:
 # Team
 * [Ajok Thon](https://github.com/ajokt123)
 * [Aria Nguyen](https://github.com/ariangn)
-* [Khameeah Obey](https://github.com/kahmeeah)
+* [Kahmeeah Obey](https://github.com/kahmeeah)
 * [Nyjur Majok](https://github.com/nyjur1)
