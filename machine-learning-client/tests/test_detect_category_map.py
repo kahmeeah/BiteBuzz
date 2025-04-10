@@ -26,7 +26,7 @@ def test_multiple_categories():
     """Tests different categories."""
     review = "The food was cold, the service was slow, and the place was dirty."
     result = detect_category_map(review)
-    expected = {"Food", "Service", "Environment", "Time"}
+    expected = {"Food", "Service", "Cleanliness", "Environment", "Time"}
     assert set(result) == expected
 
 
