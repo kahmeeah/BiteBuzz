@@ -3,6 +3,7 @@
 CATEGORY_KEYWORDS = {
     "Food": [
         "taste",
+        "food"
         "bland",
         "delicious",
         "cold",
@@ -38,6 +39,7 @@ CATEGORY_KEYWORDS = {
     ],
     "Service": [
         "rude",
+        "service",
         "waiter",
         "staff",
         "apologize",
@@ -65,6 +67,7 @@ CATEGORY_KEYWORDS = {
     ],
     "Environment": [
         "clean",
+        "environment",
         "dirty",
         "music",
         "loud",
@@ -91,6 +94,7 @@ CATEGORY_KEYWORDS = {
     ],
     "Price": [
         "expensive",
+        "price",
         "cheap",
         "overpriced",
         "value",
@@ -116,6 +120,7 @@ CATEGORY_KEYWORDS = {
     ],
     "Time": [
         "wait",
+        "time",
         "long",
         "late",
         "slow",
@@ -140,6 +145,7 @@ CATEGORY_KEYWORDS = {
     ],
     "Location": [
         "parking",
+        "location",
         "convenient",
         "accessible",
         "downtown",
@@ -160,6 +166,8 @@ CATEGORY_KEYWORDS = {
     ],
     "Drinks": [
         "cocktail",
+        "drinks",
+        "drink",
         "wine",
         "beer",
         "beverage",
@@ -182,6 +190,7 @@ CATEGORY_KEYWORDS = {
     ],
     "Cleanliness": [
         "spotless",
+        "dirty",
         "hygienic",
         "sanitary",
         "filthy",
