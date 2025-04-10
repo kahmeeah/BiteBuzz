@@ -1,27 +1,39 @@
 name: Machine Learning Client CI
+
 on:
-  pull_request: 
-    branches:
-      - main
-      - master
-    paths:
-      - "machine-learning-client/**"
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  build-backend:
+  test:
+    name: Build & Test Machine Learning Client
+    timeout-minutes: 5
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./machine-learning-client
+
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Install Python, pipenv and Pipfile packages
-        uses: kojoru/prepare-pipenv@v1
-        with:
-          python-version: "3.11"
-          working-directory: ./machine-learning-client
-      - name: Test with pytest
-        run: |
-          export MONGODB_URI="NONE"
-          export MONGODB_DBNAME="NONE"
-          pipenv run python -m pytest
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install pipenv
+      run: pip install pipenv
+
+    - name: Install dependencies
+      run: |
+        cd machine-learning-client
+        pipenv install --dev --deploy
+
+    - name: Run tests with pytest
+      run: |
+        cd machine-learning-client
+        pipenv run pytest --cov=helpers --cov-report=term
