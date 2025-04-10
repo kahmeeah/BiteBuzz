@@ -1,6 +1,6 @@
 """Module for generating improvement suggestions based on user review keywords."""
 
-from category_map import CATEGORY_KEYWORDS
+from .category_map import CATEGORY_KEYWORDS
 
 
 def generate_suggestion(review, sentiment, key_word):
