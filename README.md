@@ -52,25 +52,20 @@ cd 4-containers-dockstars machine-learning-client
 ```shell
 pipenv install
 ```
-3. Create a ```.env``` file in the root directory with the following content: 
-```
-MONGODB_URI=mongodb://mongodb:27017/
-MONGODB_DBNAME=[insert_name_here] ADD NAME!!!!!!!!!!!!!!!!
-SECRET_KEY=your-secret-key-here
-```
-4.  Setup Environment for ML Client:
+
+3.  Setup Environment for ML Client:
 ```shell
 cd machine-learning-client
 pipenv install
 ```
 
-5.  Setup Environment for Web App:
+4.  Setup Environment for Web App:
 ```shell
 cd ../web-app
 pipenv install
 ```
 
-6. Access the web interface at http://127.0.0.1:8080
+5. Access the web interface at http://127.0.0.1:8080
 
 
 ## 
