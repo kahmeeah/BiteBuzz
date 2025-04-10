@@ -29,7 +29,7 @@ def generate_suggestion(review, sentiment, key_word):
                     return "Train staff to enhance customer service."
                 case "Price":
                     return "Consider adjusting pricing to match value."
-                case "Ambience":
+                case "Environment":
                     return "Improve lighting, music, or seating arrangements."
                 case "Wait":
                     return "Reduce wait times by optimizing service flow."
