@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 import time
 
-#from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import pymongo
 
 from helpers.analyze_sentiment import analyze_sentiment
@@ -22,7 +22,7 @@ from helpers.detect_category_map import detect_category_map
 
 # this is the new mongo connection stuff
 client = pymongo.MongoClient("mongodb://mongo:27017/")
-db = client["bitebuzz"]  
+db = client["bitebuzz"]
 collection = db["reviews"]
 
 
@@ -61,6 +61,7 @@ def process_unprocessed_reviews():
                 }
             },
         )
+
 
 if __name__ == "__main__":
     print("ml client started, periodically checking for unprocessed reviews")
