@@ -4,7 +4,7 @@ FROM python:3.10-slim
 RUN pip install pipenv
 
 # set working directory
-WORKDIR /app
+WORKDIR /ml_client
 
 # copy pipenv files
 COPY Pipfile Pipfile.lock ./
@@ -14,6 +14,8 @@ RUN pipenv install --deploy --system
 
 # add files from rest of app
 ADD . /app
+
+ENV PYTHONPATH=/ml_client
 
 # run on port 5000
 EXPOSE 8080
