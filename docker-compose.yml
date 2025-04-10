@@ -10,7 +10,7 @@ services:
       - mongo
 
   mongo:
-    image: mongo:6
+    image: mongo
     ports:
       - "27017:27017"
     volumes:
@@ -20,7 +20,7 @@ services:
     build: ./machine-learning-client 
     container_name: ml_client
     environment:
-      - MONGO_URI=mongodb://mongodb:27017/ 
+      - MONGO_URI=mongodb://mongo:27017/ 
     depends_on:
       - mongo
 
