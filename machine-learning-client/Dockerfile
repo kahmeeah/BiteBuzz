@@ -13,7 +13,7 @@ COPY Pipfile Pipfile.lock ./
 RUN pipenv install --deploy --system
 
 # add files from rest of app
-ADD . /app
+ADD . /ml_client
 
 ENV PYTHONPATH=/ml_client
 
