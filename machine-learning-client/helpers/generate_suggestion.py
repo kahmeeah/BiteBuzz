@@ -42,7 +42,7 @@ def generate_suggestion(review, sentiment, key_word):
                 case "Cleanliness":
                     suggestion = "Ensure cleanliness across all areas."
                 case _:
-                    suggestion = "Check customer feedback for this area."
+                    suggestion = " Check customer feedback for this area."
             break
 
     return suggestion
