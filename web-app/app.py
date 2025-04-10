@@ -41,24 +41,26 @@ def get_result(review_id):
     returns processed analysis results if available
     """
     try:
-        review = collection.find_one({"_id": ObjectId(review_id)})
-        if not review:
-            return jsonify({"error": "Not found"}), 404
-        if not review.get("processed"):
-            return jsonify({"status": "processing"}), 202
-
-        return jsonify(
-            {
-                "text": review["text"],
-                "sentiment": review["sentiment"],
-                "suggestion": review["suggestion"],
-                "category": review["category"],
-                "polarity": review["polarity"],
-                "subjectivity": review["subjectivity"],
-            }
-        )
-    except InvalidId:
+        _id = ObjectId(review_id)
+    except (InvalidId, TypeError, ValueError):
         return jsonify({"error": "Invalid review ID"}), 400
+
+    review = collection.find_one({"_id": _id})
+    if not review:
+        return jsonify({"error": "Not found"}), 404
+    if not review.get("processed"):
+        return jsonify({"status": "processing"}), 202
+
+    return jsonify(
+        {
+            "text": review["text"],
+            "sentiment": review["sentiment"],
+            "suggestion": review["suggestion"],
+            "category": review["category"],
+            "polarity": review["polarity"],
+            "subjectivity": review["subjectivity"],
+        }
+    )
 
 
 @app.route("/logs")
