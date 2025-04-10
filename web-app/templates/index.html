@@ -4,14 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../static/css/global.css">
-        <title>Document</title>
+        <title>Bitebuzz</title>
 </head>
 <body>
     <h1 class="title">BITE<span id="i-color">BUZZ</span></h1>
 
     <div class="tabs">
-        <button class="tab-button" id="yellow-tab">tab 1</button>
-        <button class="tab-button" id="red-tab">tab 2</button>
+        <button class="tab-button" id="yellow-tab">demo</button>
+        <button class="tab-button" id="red-tab">logs</button>
         <button class="tab-button" id="blue-tab">about</button>
     </div>
 
@@ -29,11 +29,20 @@
             <button id="submit-button">click</button>
         </div> -->
         <!-- i commented the above out to replace w the mic stuff -->
+         <img src="../static/images/mic-icon.svg" alt="" id="mic-icon">
+         <br>
+         <div id="recording-msg"></div>
 
-        <button id="record-btn">start recording</button>
+        <!-- <button id="record-btn">start recording</button> -->
+        <br>
+
+            <div id="transcript-box">
+              <div id="transcript-body">(Live transcript pending...)</div>
+            </div>
+          
         <button id="submit-btn" disabled>submit review</button>
         <button id="new-review" style="display:none;">record another review</button>
-        <div id="preview"></div>
+        <!-- <div id="preview"></div> -->
 
     </div>
 
@@ -44,8 +53,26 @@
             </svg>
         </div> -->
 
-        <textarea class="text-box" name="text-box"
-            placeholder="Paste your review here"></textarea>
+        <div class="log-container">
+            <label class="log-label">Processed Logs</label>
+            <div id="log-box">
+              <table id="log-table">
+                <thead>
+                  <tr>
+                    <th>Text</th>
+                    <th>Sentiment</th>
+                    <th>Suggestion</th>
+                    <th>Category</th>
+                    <th>Polarity</th>
+                    <th>Subjectivity</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="log-body">
+                </tbody>
+              </table>
+            </div>
+          </div>
 
        
     </div>
@@ -58,7 +85,14 @@
         </div> -->
 
         <div>
-            <p>hello</p>
+            <label class="about-label">About Bitebuzz</label>
+            <p class="about-body">The hospitality industry lacks a reliable way to gauge accurate customer feedback. 
+                Questionnaires and forms left at restaurants regularly go ignored, and reviews written online hours after the meal lack objectivity. </p>
+            <p class="about-body">Bitebuzz fills this gap; revolutionizing the dining sector with an innovative new option for telling businesses what they really think. </p>
+            <p class="about-body">With Bitebuzz, customers have an easy way to quickly give the restaurant their thoughts! Through microphone kiosks strategically placed 
+                outside the exits of restaurants, satisfied or unsatisfied diners can quickly record their thoughts which can then be instantaneously processed to provide businesses with fresh and actionable insight on customer satisfaction.
+                Once a customer leaves the restaurant, they can quickly turn into the Bitebuzz kiosk to get their thoughts out from the moment they leave the restaurant. 
+                After recording their opinions, the audio is processed into text that is collected so that our machine learning client can generate suggestions for the business to improve.</p>
         </div>
 
        
@@ -69,7 +103,10 @@
     <div class="popup-bg">
         <div class="popup-box">
             <img id="popup" draggable="false" src="../static/images/bigrips.svg" alt="">
-            <div style="z-index: 99999;">hallllooooooooo</div>
+            <div style="z-index: 99999;" id="popup-title">Title</div>
+            <br>
+            <div style="z-index: 99999;" id="popup-body">Body starts here</div>
+            <br>
             <button id="close-button">close</button>
         </div>
         
@@ -78,7 +115,7 @@
         </svg> -->
     </div>
 
-    <div>whaddup</div>
+    <!-- <div>whaddup</div> -->
 
 </body>
 <script>
@@ -86,6 +123,8 @@
     const popup = document.getElementById("popup")
     const popupDiv = document.querySelector(".popup-box")
     const closeButton = document.getElementById("close-button")
+    const popupTitle = document.getElementById("popup-title")
+    const popupBody = document.getElementById("popup-body")
 
     const yellowTab = document.getElementById("yellow-tab")
     const redTab = document.getElementById("red-tab")
@@ -98,7 +137,11 @@
     const recordBtn = document.getElementById('record-btn')
     const submitBtn = document.getElementById('submit-btn')
     const newReviewBtn = document.getElementById('new-review')
-    const preview = document.getElementById('preview')
+    // const preview = document.getElementById('preview')
+    const preview = document.getElementById("transcript-body")
+
+    const micIcon = document.getElementById('mic-icon');
+    const recordingMsg = document.getElementById('recording-msg')
 
     let isRecording = false
     let recognition
@@ -107,6 +150,13 @@
     if ('webkitSpeechRecognition' in window) {
         recognition = new webkitSpeechRecognition()
         recognition.continuous = false
+        recognition.onend = () => {
+            if (isRecording) {
+                isRecording = false;
+                recordingMsg.innerHTML = 'Recording stopped due to inactivity.';
+                micIcon.classList.remove('active');
+            }
+        };
         recognition.lang = 'en-US'
         recognition.interimResults = false
 
@@ -118,16 +168,36 @@
 
         recognition.onerror = (event) => {
             console.error("Speech recognition error:", event.error)
+            popupBg.style.visibility = 'visible'
+            popupTitle.innerHTML = "Woah there, partner!"
+            popupBody.innerHTML = "You have encountered the following error: '" + event.error + "'. Check your browser permissions and try refreshing the page."
             preview.textContent = "Error: " + event.error
         }
 
-        recordBtn.addEventListener('click', () => {
+        // recordBtn.addEventListener('click', () => {
+        //     if (!isRecording) {
+        //         recognition.start()
+        //         recordBtn.textContent = "stop recording"
+        //     } else {
+        //         recognition.stop()
+        //         recordBtn.textContent = "start recording"
+        //     }
+        //     isRecording = !isRecording
+        // })
+
+        micIcon.addEventListener('click', () => {
             if (!isRecording) {
                 recognition.start()
-                recordBtn.textContent = "stop recording"
+                // recordBtn.textContent = "stop recording"
+                recordingMsg.innerHTML = 'Recording...'
+                micIcon.classList.add('active');
+                // recording...
             } else {
                 recognition.stop()
-                recordBtn.textContent = "start recording"
+                recordingMsg.innerHTML = 'Recording stopped.'
+                micIcon.classList.remove('active');
+                // recordBtn.textContent = "start recording"
+                // recording stopped
             }
             isRecording = !isRecording
         })
@@ -149,6 +219,10 @@
         console.log("Submitted review with ID:", data.id)
 
         preview.textContent = "review submitted!"
+
+        popupBg.style.visibility = 'visible'
+        popupTitle.innerHTML = "Review submitted!"
+        popupBody.innerHTML = "Check out the logs to view the result."
         submitBtn.disabled = true
         recordBtn.disabled = true
         newReviewBtn.style.display = 'inline-block'
@@ -184,7 +258,7 @@
     yellowTab.addEventListener("click", () =>{
         redMain.style.display = 'none'
         blueMain.style.display = 'none'
-        yellowMain.style.display = 'grid'
+        yellowMain.style.display = 'flex'
     })
 
     blueTab.addEventListener("click", () =>{
@@ -192,5 +266,31 @@
         yellowMain.style.display = 'none'
         blueMain.style.display = 'grid'
     })
+
+    async function loadLogs() {
+    const res = await fetch('/logs');
+    const logs = await res.json();
+
+    const logBody = document.getElementById('log-body');
+    logBody.innerHTML = '';
+
+    logs.forEach(log => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+        <td>${log.text}</td>
+        <td>${log.sentiment}</td>
+        <td>${log.suggestion}</td>
+        <td>${log.category}</td>
+        <td>${log.polarity}</td>
+        <td>${log.subjectivity}</td>
+        <td>${log.date}</td>
+        `;
+
+        logBody.appendChild(row);
+    });
+    }
+    
+    loadLogs();
 </script>
 </html>
