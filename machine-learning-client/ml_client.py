@@ -1,6 +1,6 @@
 """Main module for processing and analyzing customer reviews from MongoDB."""
 
-import os
+# import os
 from datetime import datetime
 import time
 
