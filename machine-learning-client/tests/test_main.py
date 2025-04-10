@@ -21,10 +21,7 @@ def test_process_negative_review_with_suggestions():
     assert result["sentiment"] == "Negative"
     assert "Food" in result["categories"]
     assert "Service" in result["categories"]
-    assert any(
-        s["category"] in ["Food", "Service"]
-        for s in result["suggestions"]
-    )
+    assert any(s["category"] in ["Food", "Service"] for s in result["suggestions"])
 
 
 def test_process_neutral_review():
