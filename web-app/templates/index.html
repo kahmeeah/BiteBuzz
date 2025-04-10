@@ -91,9 +91,50 @@
     const redMain = document.querySelector(".red-main")
     const blueMain = document.querySelector(".blue-main")
 
-    console.log(submitButton)
-    submitButton.addEventListener("click", () => {
-        popupBg.style.visibility = 'visible'
+    const textBox = document.querySelector(".text-box")
+
+    // edited this
+    submitButton.addEventListener("click", async () => {
+        const reviewText = textBox.value
+        if (!reviewText) {
+            alert("Please enter a review first!")
+            return
+        }
+
+        // Submit the review
+        const response = await fetch("/submit", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ text: reviewText })
+        })
+        const data = await response.json()
+        const reviewId = data.id
+
+        // Poll for result every 2 seconds
+        const poll = setInterval(async () => {
+            const res = await fetch(`/result/${reviewId}`)
+            if (res.status === 200) {
+                const resultData = await res.json()
+                popupDiv.innerHTML = `
+                    <p><strong>Sentiment:</strong> ${resultData.sentiment}</p>
+                    <p><strong>Suggestion:</strong> ${resultData.suggestion}</p>
+                    <p><strong>Category:</strong> ${resultData.category}</p>
+                    <p><strong>Polarity:</strong> ${resultData.polarity}</p>
+                    <p><strong>Subjectivity:</strong> ${resultData.subjectivity}</p>
+                    <button id="close-button">close</button>
+                `
+                popupBg.style.visibility = 'visible'
+                clearInterval(poll)
+
+                document.getElementById("close-button").addEventListener("click", () => {
+                    popupBg.style.visibility = 'hidden'
+                })
+
+            } else if (res.status !== 202) {
+                console.error("Unexpected response")
+                clearInterval(poll)
+            }
+        }, 2000)
     })
 
     popupBg.addEventListener("click", (e) => {

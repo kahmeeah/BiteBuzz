@@ -1,9 +1,10 @@
 """Main module for processing and analyzing customer reviews from MongoDB."""
 
-import os
+# import os
 from datetime import datetime
+import time
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import pymongo
 
 from helpers.analyze_sentiment import analyze_sentiment
@@ -12,11 +13,16 @@ from helpers.detect_category_map import detect_category_map
 
 
 # docker???
-load_dotenv(override=True)
+# load_dotenv(override=True)
 
-database_url = os.getenv("MONGO_URI")
-client = pymongo.MongoClient(database_url)
-db = client[os.getenv("MONGO_DBNAME")]
+# database_url = os.getenv("MONGO_URI")
+# client = pymongo.MongoClient(database_url)
+# db = client[os.getenv("MONGO_DBNAME")]
+# collection = db["reviews"]
+
+# this is the new mongo connection stuff
+client = pymongo.MongoClient("mongodb://mongo:27017/")
+db = client["bitebuzz"]
 collection = db["reviews"]
 
 
@@ -55,3 +61,10 @@ def process_unprocessed_reviews():
                 }
             },
         )
+
+
+if __name__ == "__main__":
+    print("ml client started, periodically checking for unprocessed reviews")
+    while True:
+        process_unprocessed_reviews()
+        time.sleep(2)  # polling interval: every 2 seconds, can change later
