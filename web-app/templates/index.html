@@ -12,6 +12,7 @@
     <div class="tabs">
         <button class="tab-button" id="yellow-tab">tab 1</button>
         <button class="tab-button" id="red-tab">tab 2</button>
+        <button class="tab-button" id="blue-tab">about</button>
     </div>
 
     <div class="main">
@@ -44,6 +45,20 @@
        
     </div>
 
+    <div class="blue-main">
+        <!-- <div class="cog-class">
+            <svg id="cog-svg">
+                <use href="../static/images/icons.svg#cog"/>
+            </svg>
+        </div> -->
+
+        <div>
+            <p>hello</p>
+        </div>
+
+       
+    </div>
+
 
 
     <div class="popup-bg">
@@ -70,9 +85,11 @@
 
     const yellowTab = document.getElementById("yellow-tab")
     const redTab = document.getElementById("red-tab")
+    const blueTab = document.getElementById("blue-tab")
 
     const yellowMain = document.querySelector(".main")
     const redMain = document.querySelector(".red-main")
+    const blueMain = document.querySelector(".blue-main")
 
     const textBox = document.querySelector(".text-box")
 
@@ -134,13 +151,22 @@
 
     redTab.addEventListener("click", () =>{
         yellowMain.style.display = 'none'
+        blueMain.style.display = 'none'
         redMain.style.display = 'grid'
 
     })
 
     yellowTab.addEventListener("click", () =>{
         redMain.style.display = 'none'
+        blueMain.style.display = 'none'
         yellowMain.style.display = 'grid'
+
+    })
+
+    blueTab.addEventListener("click", () =>{
+        redMain.style.display = 'none'
+        yellowMain.style.display = 'none'
+        blueMain.style.display = 'grid'
 
     })
 </script>

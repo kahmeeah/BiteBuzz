@@ -1,6 +1,6 @@
 """Module for detecting review categories based on keyword matching."""
 
-from category_map import CATEGORY_KEYWORDS
+from .category_map import CATEGORY_KEYWORDS
 
 
 def detect_category_map(text):
