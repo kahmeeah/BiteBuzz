@@ -85,7 +85,7 @@ pipenv install
 
 Web App:
 ```shell
-cd ../web-app
+cd web-app
 pipenv install
 ```
 
