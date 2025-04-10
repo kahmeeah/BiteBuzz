@@ -21,4 +21,4 @@ ENV PYTHONPATH=/ml_client
 EXPOSE 8080
 
 # Run app.py when the container launches
-CMD ["python", "ml_client.py"]
+CMD ["python", "-u", "ml_client.py"]
