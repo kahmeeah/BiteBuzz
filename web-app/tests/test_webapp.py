@@ -9,12 +9,14 @@ from app import app
 
 
 class FlaskAppTest(unittest.TestCase):
+    "tests class"
 
     @patch("app.collection")
     def test_submit_review_no_text(self, mock_collection):
         """
         Test the /submit route when no text is provided.
         """
+        _ = mock_collection
         with app.test_client() as client:
             response = client.post("/submit", json={})
             self.assertEqual(response.status_code, 400)
@@ -68,6 +70,7 @@ class FlaskAppTest(unittest.TestCase):
         """
         Test the /result route with an invalid review ID.
         """
+        _ = mock_collection
         with app.test_client() as client:
             response = client.get("/result/invalid_id!")
             self.assertEqual(response.status_code, 400)
@@ -84,4 +87,3 @@ class FlaskAppTest(unittest.TestCase):
         with app.test_client() as client:
             response = client.post("/submit", json={"text": "Great product!"})
             self.assertEqual(response.status_code, 200)
-
