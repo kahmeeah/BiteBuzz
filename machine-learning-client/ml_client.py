@@ -32,7 +32,8 @@ def process_unprocessed_reviews():
         _id = review_doc["_id"]
 
         sentiment_result = analyze_sentiment(review_text)
-        suggestion = generate_suggestion(review_text, sentiment_result["sentiment"])
+        key_word = category.lower()
+        suggestion = generate_suggestion(review_text, sentiment_result["sentiment"],key_word)
         categories = detect_category_map(review_text)
         category = categories[0]
 
