@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "225af842c8a800a6503c19a716e89629ec0f26ccaa46b4bcf278526c05a8d9e7"
+            "sha256": "955f10f663cc8a4ababa35c9984dd2267cf9ec6333254a8a4fc2865fb16b1ed1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -390,6 +390,9 @@
     },
     "develop": {
         "coverage": {
+            "extras": [
+                "toml"
+            ],
             "hashes": [
                 "sha256:042e7841a26498fff7a37d6fda770d17519982f5b7d8bf5278d140b67b61095f",
                 "sha256:04bfec25a8ef1c5f41f5e7e5c842f6b615599ca8ba8391ec33a9290d9d2db3a3",
@@ -508,6 +511,15 @@
             "index": "pypi",
             "markers": "python_version >= '3.8'",
             "version": "==8.3.5"
+        },
+        "pytest-cov": {
+            "hashes": [
+                "sha256:46935f7aaefba760e716c2ebfbe1c216240b9592966e7da99ea8292d4d3e2a0a",
+                "sha256:bddf29ed2d0ab6f4df17b4c55b0a657287db8684af9c42ea546b21b1041b3dde"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.9'",
+            "version": "==6.1.1"
         }
     }
 }
