@@ -33,8 +33,14 @@ def generate_suggestion(review, sentiment, key_word):
                     suggestion = "Consider adjusting pricing to match value."
                 case "Environment":
                     suggestion = "Improve lighting, music, or seating arrangements."
-                case "Wait":
+                case "Time":
                     suggestion = "Reduce wait times by optimizing service flow."
+                case "Drinks":
+                    suggestion = "Enhance drink variety or presentation."
+                case "Location":
+                    suggestion = "Improve accessibility or parking options."
+                case "Cleanliness":
+                    suggestion = "Ensure cleanliness across all areas."
                 case _:
                     suggestion = "Check customer feedback for this area."
             break
