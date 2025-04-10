@@ -36,11 +36,13 @@ def process_unprocessed_reviews():
     for review_doc in unprocessed_reviews:
         review_text = review_doc["text"]
         _id = review_doc["_id"]
-
         sentiment_result = analyze_sentiment(review_text)
-        suggestion = generate_suggestion(review_text, sentiment_result["sentiment"])
         categories = detect_category_map(review_text)
         category = categories[0]
+        key_word = category.lower()
+        suggestion = generate_suggestion(
+            review_text, sentiment_result["sentiment"], key_word
+        )
 
         date = datetime.now().strftime("%B %d %I:%M%p")
 

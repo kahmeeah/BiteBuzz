@@ -10,11 +10,14 @@ pymongo = "*"
 textblob = "*"
 tomli = "*"
 typing-extensions = "*"
+python-dotenv = "*"
 
 [dev-packages]
 pytest = "*"
 coverage = "*"
 dill = "*"
+exceptiongroup = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.10"
