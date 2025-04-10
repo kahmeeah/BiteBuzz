@@ -11,6 +11,8 @@ textblob = "*"
 tomli = "*"
 typing-extensions = "*"
 python-dotenv = "*"
+coverage = "*"
+pytest = "*"
 
 [dev-packages]
 pytest = "*"

@@ -60,6 +60,25 @@ def get_result(review_id):
     except InvalidId:
         return jsonify({"error": "Invalid review ID"}), 400
 
+@app.route("/logs")
+def get_logs():
+    """
+    returns all logs in db
+    """
+    logs = collection.find({"processed": True})
+    result = []
+    for doc in logs:
+        result.append({
+            "text": doc.get("text"),
+            "sentiment": doc.get("sentiment"),
+            "suggestion": doc.get("suggestion"),
+            "category": doc.get("category"),
+            "polarity": doc.get("polarity"),
+            "subjectivity": doc.get("subjectivity"),
+            "date": doc.get("date"),
+        })
+    return jsonify(result)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
