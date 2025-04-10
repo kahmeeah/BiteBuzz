@@ -103,6 +103,7 @@ button {
     justify-content: center;
     display: none;
     color: #FFFAF2;
+    overflow: scroll;
 }
 
 .tabs{
@@ -169,16 +170,29 @@ button {
 }
 
 #popup-body{
-    max-width: 40%;
+    /* width: ; */
+    max-width: 340px;    
+    width: 100%;
     color: #FFFAF2;
-    text-align: left;
-    word-wrap: break-word;
-    font-size: 20px;
+    /* text-align: left; */
+    word-break: break-word;
+    white-space: normal;
+    max-height: 130px;
+    font-size: 1.2rem;
+    overflow: auto;
+    padding: 0;
 
 }
 
 #close-button{
     z-index: 99999;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.about-body{
+    font-size: 18px;
+
 }
 
 @media  screen and (max-width:485px) {
@@ -197,6 +211,16 @@ button {
     #popup{
         top: 270px;
         width: 300px;
+    }
+    #popup-title{
+        font-size: 25px;
+    }
+    #popup-body{
+        font-size: 1rem;
+        max-width: 55%;
+    }
+    .about-body{
+        font-size: 15px;
     }
     
 }
@@ -221,15 +245,15 @@ button {
 }
 
 .cog-class{
-    grid-area: top;
-    justify-self: right;
-    margin-bottom: 20px;
-    margin-right: 8px;
+
+
 }
 
-#cog-svg{
-    width: 40px;
-    fill: #568EC9;
+#download-svg{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    fill: #ECD05E;
 }
 
 
@@ -341,9 +365,10 @@ button {
 }
 
 .log-container {
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     padding: 1rem;
-    width: 80%;
+    width: 90%;
+    /* max-width: 80%; */
   }
   
 .log-label {
@@ -353,6 +378,7 @@ button {
     margin-bottom: 0.5rem;
     display: block;
     font-weight: 900;
+    margin-top: 0;
 }
   
 #log-box {
@@ -363,11 +389,13 @@ button {
     max-height: 200px;
     max-width: 700px;
     overflow-y: auto;
+    overflow-x: auto;
     font-family: 'Courier New', monospace;
 }
   
 #log-table {
-    /* width: 100%; */
+    width: 100%;
+    min-width: 30px;
     border-collapse: collapse;
     table-layout: fixed;
 }
@@ -377,15 +405,21 @@ button {
     padding: 0.5rem;
     border-bottom: 1px solid #ddd;
     text-align: left;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     word-wrap: break-word;
     vertical-align: top;
+    hyphens: auto
+
+    /* overflow-wrap: break-word; */
 }
 
 #log-table th {
     background-color: #f0e4e4;
-    position: sticky;
-    top: 0;
+    /* position: sticky; */
+    /* top: 0; */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .about-label{
@@ -398,7 +432,3 @@ button {
 
 }
 
-.about-body{
-    font-size: 18px;
-
-}

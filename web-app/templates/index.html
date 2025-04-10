@@ -47,11 +47,11 @@
     </div>
 
     <div class="red-main">
-        <!-- <div class="cog-class">
-            <svg id="cog-svg">
-                <use href="../static/images/icons.svg#cog"/>
+        <div class="cog-class">
+            <svg id="download-svg">
+                <use href="../static/images/icons.svg#download-button"/>
             </svg>
-        </div> -->
+        </div>
 
         <div class="log-container">
             <label class="log-label">Processed Logs</label>
@@ -63,8 +63,6 @@
                     <th>Sentiment</th>
                     <th>Suggestion</th>
                     <th>Category</th>
-                    <th>Polarity</th>
-                    <th>Subjectivity</th>
                     <th>Date</th>
                   </tr>
                 </thead>
@@ -142,6 +140,8 @@
 
     const micIcon = document.getElementById('mic-icon');
     const recordingMsg = document.getElementById('recording-msg')
+
+    const downloadBtn = document.getElementById('download-svg')
 
     let isRecording = false
     let recognition
@@ -222,7 +222,7 @@
 
         popupBg.style.visibility = 'visible'
         popupTitle.innerHTML = "Review submitted!"
-        popupBody.innerHTML = "Check out the logs to view the result."
+        popupBody.innerHTML = "Check out the logs to view the result, or submit another!"
         submitBtn.disabled = true
         recordBtn.disabled = true
         newReviewBtn.style.display = 'inline-block'
@@ -250,9 +250,10 @@
     })
 
     redTab.addEventListener("click", () =>{
+        loadLogs()
         yellowMain.style.display = 'none'
         blueMain.style.display = 'none'
-        redMain.style.display = 'grid'
+        redMain.style.display = 'flex'
     })
 
     yellowTab.addEventListener("click", () =>{
@@ -264,7 +265,7 @@
     blueTab.addEventListener("click", () =>{
         redMain.style.display = 'none'
         yellowMain.style.display = 'none'
-        blueMain.style.display = 'grid'
+        blueMain.style.display = 'flex'
     })
 
     async function loadLogs() {
@@ -282,8 +283,6 @@
         <td>${log.sentiment}</td>
         <td>${log.suggestion}</td>
         <td>${log.category}</td>
-        <td>${log.polarity}</td>
-        <td>${log.subjectivity}</td>
         <td>${log.date}</td>
         `;
 
@@ -292,5 +291,30 @@
     }
     
     loadLogs();
+
+    downloadBtn.addEventListener("click", () => {
+    const table = document.getElementById("log-table");
+    let csv = [];
+
+    for (let row of table.rows) {
+        let rowData = [];
+        for (let cell of row.cells) {
+        // escape commas and quotes
+        const text = cell.innerText.replace(/"/g, '""');
+        rowData.push(`"${text}"`);
+        }
+        csv.push(rowData.join(","));
+    }
+
+    const blob = new Blob([csv.join("\n")], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.href = url;
+    a.download = "bitebuzz_logs.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+    });
+
 </script>
 </html>
