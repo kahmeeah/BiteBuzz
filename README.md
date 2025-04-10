@@ -2,7 +2,7 @@
 ![Web App CI](https://github.com/software-students-spring2025/4-containers-dockstars/actions/workflows/web-app-ci.yml/badge.svg?branch=main)
 ![ML Client CI](https://github.com/software-students-spring2025/4-containers-dockstars/actions/workflows/machine-learning-client-ci.yml/badge.svg?branch=main)
 
-# Voice Review Analyzer 🎤
+# Voice Review Analyzer 
 
 This project provides a more natural and accessible way for restaurant customers to give feedback using speech input. Instead of typing, customers can simply record their reviews directly through the web app.
 
@@ -13,7 +13,7 @@ This voice-powered system enhances both the user experience and the business ins
 # Overview:
 The application consists of three independent subsystems:
 
-### Web App (Flask):
+### Flask Web App
 - Captures voice reviews via microphone
 - Performs speech-to-text conversion
 - Sends raw data to the database
@@ -40,37 +40,27 @@ The application consists of three independent subsystems:
 
 
 # Setup and Installation:
-1.  Clone the repository:
+## Prerequisites
+
+Install the following software on your machine:
+
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [Python 3.8+](https://www.python.org/downloads/)
+
+### Installing Docker
+
+1. Go to the [Docker website](https://www.docker.com/products/docker-desktop) and download Docker Desktop for your operating system.
+2. Follow the installation instructions and make sure Docker Desktop is running.
+
+## Running and Configuration Instructions
+
+Clone the repository:
 ```shell
 git clone https://github.com/software-students-spring2025/4-containers-dockstars.git
 ```
-```shell
-cd 4-containers-dockstars machine-learning-client
-```
 
-2.  Install Dependencies:
-```shell
-pipenv install
-```
-
-3.  Setup Environment for ML Client:
-```shell
-cd machine-learning-client
-pipenv install
-```
-
-4.  Setup Environment for Web App:
-```shell
-cd ../web-app
-pipenv install
-```
-
-5. Access the web interface at http://127.0.0.1:8080
-
-
-## 
-
-# Running the Full System with Docker Compose:
+Run the following command:
 ```shell
 docker-compose up --build
 ```
@@ -78,6 +68,29 @@ This starts all three services:
 - Machine learning client
 - Flask web app
 - MongoDB database
+
+
+Access the web interface at http://127.0.0.1:8080
+
+### Development
+
+Alternatively, if you would like to test each system locally, you can install the dependencies for each as follows:
+
+
+ML Client:
+```shell
+cd machine-learning-client
+pipenv install
+```
+
+Web App:
+```shell
+cd web-app
+pipenv install
+```
+
+
+
 
 
 # Team
