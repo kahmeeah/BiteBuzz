@@ -13,7 +13,7 @@ COPY Pipfile Pipfile.lock ./
 RUN pipenv install --deploy --system
 
 # add files from rest of app
-ADD . /ml_client
+ADD . /app
 
 # run on port 5000
 EXPOSE 8080

@@ -1,4 +1,4 @@
-name: Web App CI
+name: Machine Learning Client CI
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Build & Test Web App
+    name: Build & Test Machine Learning Client
     timeout-minutes: 5
     runs-on: ubuntu-latest
 
@@ -18,7 +18,7 @@ jobs:
 
     defaults:
       run:
-        working-directory:./machine-learning
+        working-directory:./machine-learning-client
 
     steps:
     - name: Checkout code
