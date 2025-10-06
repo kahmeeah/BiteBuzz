@@ -1,5 +1,5 @@
 ![Lint-free](https://github.com/kahmeeah/BiteBuzz/actions/workflows/lint.yml/badge.svg)
-![Web App CI](https://github.com/software-students-spring2025/4-containers-dockstars/actions/workflows/web-app-ci.yml/badge.svg?branch=main)
+![Web App CI](https://github.com/kahmeeah/BiteBuzz/actions/workflows/web-app-ci.yml/badge.svg?branch=main)
 ![ML Client CI](https://github.com/kahmeeah/BiteBuzz/actions/workflows/machine-learning-client-ci.yml/badge.svg?branch=main)
 
 # Voice Review Analyzer 
